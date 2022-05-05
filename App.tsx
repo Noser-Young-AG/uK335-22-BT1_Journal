@@ -5,7 +5,7 @@ import MultiselectWeekdays from './ui/molecules/MultiselectWeekdays';
 export default function App() {
   return (
     <View style={styles.container}>
-      <MultiselectWeekdays elements={['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']}></MultiselectWeekdays>
+      <MultiselectWeekdays title='W E E K D A Y' elements={['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']}></MultiselectWeekdays>
       <StatusBar style="auto" />
     </View>
   );
