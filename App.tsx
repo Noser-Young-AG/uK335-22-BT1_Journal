@@ -3,12 +3,13 @@ import { StyleSheet, Text, View } from 'react-native';
 import ReminderCard from './ui/molecules/ReminderCard';
 import Recurrence from './types/Recurrence';
 import MultiselectWeekdaysGroup from './ui/organisms/MultiselectWeekdaysGroup';
+import Navbar from './ui/organisms/Navbar';
 
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
+      <Navbar title='Home'></Navbar>
       <ReminderCard
         recurrence={Recurrence.WEEKLY}
         weekday="Monday"
@@ -24,7 +25,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
     backgroundColor: '#fff',
   },
 });
