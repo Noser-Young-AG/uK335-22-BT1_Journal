@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import ButtonElement from './ui/atoms/ButtonElement';
+import FabElement from './ui/atoms/FabElement';
+import ActionButtons from './ui/organisms/ActionButtons';
 import MultiselectWeekdaysGroup from './ui/organisms/MultiselectWeekdaysGroup';
 
 export default function App() {
@@ -14,7 +16,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
     backgroundColor: '#fff',
   },
 });
