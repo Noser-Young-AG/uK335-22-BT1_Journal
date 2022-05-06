@@ -10,6 +10,8 @@ type selectProps = {
 export default function MultiselectElement(prop: selectProps) {
   const [check, setChecked] = useState(false);
 
+  const emptyIcon = () => null
+
   const styles = StyleSheet.create({
     chip: {
       margin: '2%',
@@ -27,6 +29,7 @@ export default function MultiselectElement(prop: selectProps) {
   return (
     <>
       <Chip
+        icon={emptyIcon}
         selectedColor={check ? '#6200EE' : 'black'}
         selected={check}
         style={[check ? styles.checkedTrue : styles.checkedFalse, styles.chip]}

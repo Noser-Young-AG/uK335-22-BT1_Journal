@@ -1,11 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import MultiselectWeekdays from './ui/molecules/MultiselectWeekdays';
+import MultiselectWeekdaysGroup from './ui/organisms/MultiselectWeekdaysGroup';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <MultiselectWeekdays title='W E E K D A Y' elements={['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']}></MultiselectWeekdays>
+      <MultiselectWeekdaysGroup title='WEEKDAY' elements={['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']}></MultiselectWeekdaysGroup>
       <StatusBar style="auto" />
     </View>
   );
