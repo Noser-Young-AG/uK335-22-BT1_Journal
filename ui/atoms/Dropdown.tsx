@@ -14,8 +14,6 @@ export default function Dropdown() {
   const [nightMode, setNightmode] = useState(false);
   const [showDropDown, setShowDropDown] = useState(false);
   const [element, setElement] = useState("");
-  const [showMultiSelectDropDown, setShowMultiSelectDropDown] = useState(false);
-  const [colors, setColors] = useState("");
   const elementList = [
     {
       label: "1",
@@ -86,8 +84,9 @@ export default function Dropdown() {
   ];
 
   return (
-    <Provider theme={nightMode ? DarkTheme : DefaultTheme}>
-        <View style={styles.safeContainerStyle}>
+    <>
+    <Provider theme={DefaultTheme}>
+        <View style={styles.safeContainerStyle} >
           <DropDown
             dropDownItemStyle={styles.elements}
             dropDownStyle={styles.vieww}
@@ -99,10 +98,11 @@ export default function Dropdown() {
             value={element}
             setValue={setElement}
             list={elementList}
+            
           />
         </View>
     </Provider>
-
+    </>
   );
 }
 

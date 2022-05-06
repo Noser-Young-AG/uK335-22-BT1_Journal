@@ -15,7 +15,7 @@ export default function MultiselectElement(prop: selectProps) {
   const styles = StyleSheet.create({
     chip: {
       margin: '2%',
-      height: '5%'
+      height: '5%',
     },
     checkedTrue: {
       backgroundColor: 'rgba(98, 0, 238, 0.08)',

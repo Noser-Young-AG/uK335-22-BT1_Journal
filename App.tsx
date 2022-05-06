@@ -11,15 +11,11 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Navbar title='Home'></Navbar>
+      <MultiselectWeekdaysGroup title='Weekday' elements={['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']}></MultiselectWeekdaysGroup>
       <Dropdown></Dropdown>
-      {/* <ReminderCard
-        recurrence={Recurrence.WEEKLY}
-        weekday="Monday"
-        hour={16}
-        minute={30}
-        recurringAmount={"forever"}
-      /> */}
-      <MultiselectWeekdaysGroup title='Weekday' elements={['1', '2']}></MultiselectWeekdaysGroup>
+
+
+
       <StatusBar style="auto" />
     </View>
   );
@@ -27,7 +23,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 0.4,
     backgroundColor: '#fff',
   },
 });
