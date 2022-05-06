@@ -20,7 +20,6 @@ export default function MultiselectWeekdaysGroup(props: MultiselectWeekdaysGroup
 const styles = StyleSheet.create({
     container: {
         margin: '2%',
-        marginTop: '15%',
         width: '100%'
     }
   });
