@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
+import ButtonElement from './ui/atoms/ButtonElement';
 
 export default function App() {
   return (
