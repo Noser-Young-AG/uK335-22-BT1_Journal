@@ -5,7 +5,6 @@ import MultiselectWeekdaysGroup from './ui/organisms/MultiselectWeekdaysGroup';
 export default function App() {
   return (
     <View style={styles.container}>
-      <MultiselectWeekdaysGroup title='WEEKDAY' elements={['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']}></MultiselectWeekdaysGroup>
       <StatusBar style="auto" />
     </View>
   );
