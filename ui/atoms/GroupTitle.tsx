@@ -3,7 +3,7 @@ import { Subheading } from 'react-native-paper';
 import { StyleSheet } from 'react-native';
 
 type GroupTitleProps = {
-    title: string
+    title?: string
   };
 
 export default function GroupTitle(props: GroupTitleProps) {
@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         letterSpacing: 1.5,
         margin: '2%',
+        marginTop: '5%',
         width: '100%'
     }
   });
