@@ -1,23 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import ReminderCard from './ui/molecules/ReminderCard';
-import Recurrence from './types/Recurrence';
-import MultiselectWeekdaysGroup from './ui/organisms/MultiselectWeekdaysGroup';
-import Navbar from './ui/organisms/Navbar';
-import Dropdown from './ui/atoms/Dropdown';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import Home from './ui/pages/Home';
+import ReminderSettings from './ui/pages/ReminderSettings';
+import NavigationPages from './types/NavigationPages';
 
+
+/**
+ * @deprecated Method should not be used.
+ */
+function HomeScreen({ navigation }) {
+  return (
+    <Home navigation={navigation} />
+  )
+}
+
+/**
+ * @deprecated Method should not be used.
+ */
+function ReminderSettingsScreen({ navigation }) {
+  return (
+    <ReminderSettings navigation={navigation} />
+  )
+}
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Navbar title='Home'></Navbar>
-      <MultiselectWeekdaysGroup title='Weekday' elements={['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']}></MultiselectWeekdaysGroup>
-      <Dropdown></Dropdown>
-
-
-
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName={NavigationPages.HOME}>
+        <Stack.Screen name={NavigationPages.HOME} component={Home} />
+        <Stack.Screen name={NavigationPages.REMINDER_SETTINGS} component={ReminderSettings} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

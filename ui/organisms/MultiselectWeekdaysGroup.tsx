@@ -8,11 +8,19 @@ type MultiselectWeekdaysGroupProps = {
     elements: string[]
   };
 
-export default function MultiselectWeekdaysGroup(props: MultiselectWeekdaysGroupProps) {
+const WEEKDAYS = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+]
+
+function MultiselectWeekdaysGroup() {
   return (
       <View style={styles.container}>
-         <GroupTitle title={props.title}></GroupTitle>
-         <MultiselectWeekdays elements={props.elements}></MultiselectWeekdays>
+         <GroupTitle title={"Weekdays"}></GroupTitle>
+         <MultiselectWeekdays elements={WEEKDAYS} />
     </View>
   )
 }
@@ -25,3 +33,4 @@ const styles = StyleSheet.create({
     }
   });
 
+export default MultiselectWeekdaysGroup
