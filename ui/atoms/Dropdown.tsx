@@ -108,10 +108,12 @@ export default function Dropdown() {
 
 const styles = StyleSheet.create({
   vieww: {
-    zIndex: 10000000,
+    backgroundColor: 'red',
+    marginTop: '0%',
   },
   elements: {
-    zIndex: 1000,
+    backgroundColor: 'green',
+    marginTop: 0
   },
   containerStyle: {
 
@@ -120,8 +122,6 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   safeContainerStyle: {
-    margin: 20,
-    justifyContent: "center",
-    zIndex: 100000,
+    backgroundColor: 'blue',
   },
 });
