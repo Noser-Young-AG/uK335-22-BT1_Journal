@@ -7,6 +7,7 @@ import { Reminder } from "../../types/Reminder";
 import MultiselectWeekdaysGroup from "../organisms/MultiselectWeekdaysGroup";
 import Navbar from "../organisms/Navbar";
 import ReminderCardGroup from "../organisms/ReminderCardGroup";
+import {loadReminder, deleteReminder, updateReminder} from '../../utils/Persistence'
 
 const REMINDER_STORAGE_KEY = "@reminder";
 
@@ -14,44 +15,20 @@ function Home({ navigation }) {
   const [reminder, setReminder] = useState<Reminder>();
 
   useEffect(() => {
-    loadReminder();
+    const localReminder = loadReminder();
+    localReminder.then((r) => {
+      setReminder(r);
+    })
+    // setReminder(loadReminder());
   }, []);
 
   useEffect(() => {
     if (reminder != null) {
-      updateReminder();
+      updateReminder(reminder);
     } else {
       deleteReminder();
     }
   }, [reminder]);
-
-  const loadReminder = async () => {
-    try {
-      let storedReminder = await AsyncStorage.getItem(REMINDER_STORAGE_KEY);
-      if (storedReminder !== null) {
-        setReminder(JSON.parse(storedReminder));
-      }
-    } catch (e) {
-      console.error("Failed to load reminder.", e);
-    }
-  };
-
-  const updateReminder = async () => {
-    try {
-      let reminderToStore = JSON.stringify(reminder);
-      await AsyncStorage.setItem(REMINDER_STORAGE_KEY, reminderToStore);
-    } catch (e) {
-      console.error("Failed to store reminder.", e);
-    }
-  };
-
-  const deleteReminder = async () => {
-    try {
-      await AsyncStorage.removeItem(REMINDER_STORAGE_KEY);
-    } catch (e) {
-      console.error("Failed to remove reminder.", e);
-    }
-  };
 
   return (
     <View style={styles.container}>
@@ -61,7 +38,7 @@ function Home({ navigation }) {
         onDelete={() => setReminder(undefined)}
         // onCreate={() => navigation.navigate(NavigationPages.REMINDER_SETTINGS)}
         onCreate={() => {
-          setReminder(new Reminder(Recurrence.WEEKLY, "Monday", 12, 12, 29));
+          setReminder(new Reminder(Recurrence.WEEKLY, "Monday", 12, 12, "forever"));
         }}
       />
     </View>
