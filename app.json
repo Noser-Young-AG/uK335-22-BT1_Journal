@@ -1,6 +1,9 @@
 {
   "expo": {
     "name": "journal-reminder",
+    "plugins": [                  
+      "@notifee/react-native"     
+    ], 
     "slug": "journal-reminder",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -23,10 +26,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "io.expo.client"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     }
   }
 }
+
