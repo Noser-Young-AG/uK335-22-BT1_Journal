@@ -10,30 +10,30 @@ export default function RecurrenceGroup() {
       <Text>Recurrence</Text>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <RadioButton.Android
-          value="element1"
-          status={checked === "element1" ? "checked" : "unchecked"}
-          onPress={() => setChecked("element1")}
+          value="Weekly"
+          status={checked === "Weekly" ? "checked" : "unchecked"}
+          onPress={() => setChecked("Weekly")}
           color="purple"
         />
-        <Text onPress={() => setChecked("element1")}>Weekly</Text>
+        <Text onPress={() => setChecked("Weekly")}>Weekly</Text>
       </View>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <RadioButton.Android
-          value="element2"
-          status={checked === "element2" ? "checked" : "unchecked"}
-          onPress={() => setChecked("element2")}
+          value="Monthly"
+          status={checked === "Monthly" ? "checked" : "unchecked"}
+          onPress={() => setChecked("Monthly")}
           color="purple"
         />
-        <Text onPress={() => setChecked("element2")}>Monthly</Text>
+        <Text onPress={() => setChecked("Monthly")}>Monthly</Text>
       </View>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <RadioButton.Android
-          value="element3"
-          status={checked === "element3" ? "checked" : "unchecked"}
-          onPress={() => setChecked("element3")}
+          value="None"
+          status={checked === "None" ? "checked" : "unchecked"}
+          onPress={() => setChecked("None")}
           color="purple"
         />
-        <Text onPress={() => setChecked("element3")}>None</Text>
+        <Text onPress={() => setChecked("None")}>None</Text>
       </View>
     </View>
   );
