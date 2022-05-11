@@ -14,7 +14,11 @@ export default function RecurrenceGroup(props: RecurrenceGroupProps) {
 
   useEffect(() => {
     props.selectedChanged(checked);
-  }, [checked])
+  }, [checked]);
+
+  useEffect(() => {
+    setChecked(props.selected);
+  }, [props.selected]);
 
   return (
     <View style={styles.container}>

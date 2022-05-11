@@ -22,6 +22,11 @@ function MultiselectWeekdaysGroup(props: MultiselectWeekdaysGroupProps) {
     props.selectedChanged(selected);
   }, [selected]);
 
+  useEffect(() => {
+    console.log("Props changed now");
+    setSelected(props.selected);
+  }, [props.selected])
+
   return (
     <View style={styles.container}>
       <GroupTitle title={"Weekdays"}></GroupTitle>

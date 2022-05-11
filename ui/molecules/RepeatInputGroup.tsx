@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { Checkbox, Text } from "react-native-paper";
 import GroupTitle from "../atoms/GroupTitle";
@@ -7,11 +7,25 @@ import MultiselectElement from "../atoms/MultiselectElement";
 
 type RepeatInputGroupProps = {
   recurringAmount?: number | string;
-  recurringAmountChanged: (value: string) => void;
+  recurringAmountChanged: (value: number | string | undefined) => void;
 }
 
 export default function RepeatInputGroup(props: RepeatInputGroupProps) {
   const [checked, setChecked] = useState(props.recurringAmount === "forever");
+  const [recurringAmount, setRecurringAmount] = useState(props.recurringAmount);
+
+  useEffect(() => {
+    props.recurringAmountChanged(checked ? "forever" : Number(recurringAmount));
+  }, [checked, recurringAmount]);
+
+  useEffect(() => {
+    setChecked(props.recurringAmount === "forever");
+  }, [props.recurringAmount, recurringAmount]);
+
+  // useEffect(() => {
+  //   setChecked(props.recurringAmount === "forever");
+  // }, [recurringAmount]);
+
 
   return (
     <View>
@@ -34,7 +48,9 @@ export default function RepeatInputGroup(props: RepeatInputGroupProps) {
           </Text>
         </View>
         <Inputfield
-          disabled={checked ? true : false}
+          onChange={(value) => setRecurringAmount(value)}
+          value={typeof recurringAmount === "number" ? recurringAmount.toString() : undefined}
+          disabled={checked}
           label="Repetition"
           affix="/100"
           placeholder="amount of repetitions"

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
+import { Text } from "react-native-paper";
 import NavigationPages from "../../types/NavigationPages";
 import Recurrence, { getRecurrenceString } from "../../types/Recurrence";
 import { Reminder } from "../../types/Reminder";
@@ -21,27 +22,41 @@ import ReminderCardGroup from "../organisms/ReminderCardGroup";
 function ReminderSettings({ navigation }) {
   const [reminder, setReminder] = useState<Reminder>();
   const [weekday, setWeekday] = useState<string>("Friday");
-  const [recurrence, setRecurrence] = useState<number>(Recurrence.NONE);
+  const [recurrence, setRecurrence] = useState<number>(Recurrence.WEEKLY);
   const [recurringAmount, setRecurringAmount] = useState<number | string | undefined>(recurrence !== Recurrence.NONE ? "forever" : undefined);
+
+  // const [weekday, setWeekday] = useState<string>(reminder != undefined ? reminder.weekday : "Friday");
+  // const [recurrence, setRecurrence] = useState<number>(reminder != undefined ? reminder.recurrence : Recurrence.NONE);
+  // const [recurringAmount, setRecurringAmount] = useState<number | string | undefined>(reminder != undefined ? reminder.recurrence : recurrence !== Recurrence.NONE ? "forever" : undefined);
 
   useEffect(() => {
     const localReminder = loadReminder();
     localReminder.then((r) => {
+      console.log(JSON.stringify(r));
       setReminder(r);
+      if (r != undefined) {
+        console.log("Reminder not undefined");
+        setWeekday(r.weekday);
+        setRecurrence(r.recurrence);
+        setRecurringAmount(r.recurringAmount);
+      }
     });
   }, []);
 
-  useEffect(() => {
-    if (reminder != null) {
-      updateReminder(reminder);
-    } else {
-      deleteReminder();
-    }
-  }, [reminder]);
+  // useEffect(() => {
+  //   if (reminder != null) {
+  //     // updateReminder(reminder);
+  //     // setWeekday(reminder.weekday);
+  //     // setRecurrence(reminder.recurrence);
+  //     // setRecurringAmount(reminder.recurringAmount);
+  //   } else {
+  //     // deleteReminder();
+  //   }
+  // }, [reminder]);
 
   useEffect(() => {
-    console.log(weekday);
-    console.log(getRecurrenceString(recurrence));
+    console.log("UE Weekday: " + weekday);
+    console.log("UE Recurrence: " + getRecurrenceString(recurrence));
   }, [weekday, recurrence]);
 
   useEffect(() => {
@@ -54,7 +69,7 @@ function ReminderSettings({ navigation }) {
     updateReminder(
       new Reminder(
         recurrence,
-        weekday,
+        weekday!,
         20,
         15,
         recurringAmount
@@ -78,7 +93,7 @@ function ReminderSettings({ navigation }) {
   return (
     <View style={styles.container}>
       <MultiselectWeekdaysGroup
-        selected={typeof reminder != "undefined" ? reminder.weekday : weekday}
+        selected={reminder != undefined ? reminder.weekday : weekday}
         selectedChanged={(x) => setWeekday(x)}
       />
       <RecurrenceGroup
@@ -90,7 +105,7 @@ function ReminderSettings({ navigation }) {
         recurringAmount={recurringAmount}
         recurringAmountChanged={(x) => setRecurringAmount(x)}
       /> */}
-      <ButtonElement name="Save" color="#000" onPress={() => saveReminderAndClose()} />
+      <ButtonElement name="Save" color="#01A299" onPress={() => saveReminderAndClose()} />
     </View>
   );
 }
