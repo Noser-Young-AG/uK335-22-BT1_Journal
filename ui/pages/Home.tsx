@@ -16,23 +16,26 @@ function Home({ navigation }) {
   const [reminder, setReminder] = useState<Reminder>();
 
   useEffect(() => {
+    console.log("First use effect");
     const localReminder = loadReminder();
     localReminder.then((r) => {
       setReminder(r);
     })
   }, []);
 
-  useFocusEffect(() => {
-    const localReminder = loadReminder();
-    localReminder.then((r) => {
-      setReminder(r);
-    })
-  })
+  useFocusEffect(
+    React.useCallback(() => {
+      console.log("Focus use effect");
+      const localReminder = loadReminder();
+      localReminder.then((r) => {
+        setReminder(r);
+      })
+    }, [])
+  )
 
   useEffect(() => {
-    if (reminder != null) {
-      // updateReminder(reminder);
-    } else {
+    console.log("Reminder use effect");
+    if (reminder == null) {
       deleteReminder();
     }
   }, [reminder]);
