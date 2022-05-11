@@ -5,8 +5,13 @@ import GroupTitle from "../atoms/GroupTitle";
 import Inputfield from "../atoms/Inputfield";
 import MultiselectElement from "../atoms/MultiselectElement";
 
-export default function RepeatInputGroup() {
-  const [checked, setChecked] = useState(false);
+type RepeatInputGroupProps = {
+  recurringAmount?: number | string;
+  recurringAmountChanged: (value: string) => void;
+}
+
+export default function RepeatInputGroup(props: RepeatInputGroupProps) {
+  const [checked, setChecked] = useState(props.recurringAmount === "forever");
 
   return (
     <View>

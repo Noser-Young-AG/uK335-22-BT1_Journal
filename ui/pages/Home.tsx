@@ -8,6 +8,7 @@ import MultiselectWeekdaysGroup from "../organisms/MultiselectWeekdaysGroup";
 import Navbar from "../organisms/Navbar";
 import ReminderCardGroup from "../organisms/ReminderCardGroup";
 import {loadReminder, deleteReminder, updateReminder} from '../../utils/Persistence'
+import { useFocusEffect } from "@react-navigation/native";
 
 const REMINDER_STORAGE_KEY = "@reminder";
 
@@ -21,9 +22,16 @@ function Home({ navigation }) {
     })
   }, []);
 
+  useFocusEffect(() => {
+    const localReminder = loadReminder();
+    localReminder.then((r) => {
+      setReminder(r);
+    })
+  })
+
   useEffect(() => {
     if (reminder != null) {
-      updateReminder(reminder);
+      // updateReminder(reminder);
     } else {
       deleteReminder();
     }

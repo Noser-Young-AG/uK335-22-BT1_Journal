@@ -1,40 +1,50 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { RadioButton } from "react-native-paper";
 import GroupTitle from "../atoms/GroupTitle";
+import Recurrence, { getRecurrenceString } from "../../types/Recurrence";
 
-export default function RecurrenceGroup() {
-  const [checked, setChecked] = React.useState("");
+type RecurrenceGroupProps = {
+  selected: number;
+  selectedChanged: (value: number) => void;
+}
+
+export default function RecurrenceGroup(props: RecurrenceGroupProps) {
+  const [checked, setChecked] = React.useState(props.selected);
+
+  useEffect(() => {
+    props.selectedChanged(checked);
+  }, [checked])
 
   return (
     <View style={styles.container}>
       <GroupTitle title={"Recurrence"}></GroupTitle>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <RadioButton.Android
-          value="element1"
-          status={checked === "element1" ? "checked" : "unchecked"}
-          onPress={() => setChecked("element1")}
+          value={getRecurrenceString(Recurrence.WEEKLY)}
+          status={checked === Recurrence.WEEKLY ? "checked" : "unchecked"}
+          onPress={() => setChecked(Recurrence.WEEKLY)}
           color="#6200EE"
         />
-        <Text onPress={() => setChecked("element1")}>Weekly</Text>
+        <Text onPress={() => setChecked(Recurrence.WEEKLY)}>{getRecurrenceString(Recurrence.WEEKLY)}</Text>
       </View>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <RadioButton.Android
-          value="element2"
-          status={checked === "element2" ? "checked" : "unchecked"}
-          onPress={() => setChecked("element2")}
+          value={getRecurrenceString(Recurrence.MONTHLY)}
+          status={checked === Recurrence.MONTHLY ? "checked" : "unchecked"}
+          onPress={() => setChecked(Recurrence.MONTHLY)}
           color="#6200EE"
         />
-        <Text onPress={() => setChecked("element2")}>Monthly</Text>
+        <Text onPress={() => setChecked(Recurrence.MONTHLY)}>{getRecurrenceString(Recurrence.MONTHLY)}</Text>
       </View>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <RadioButton.Android
-          value="element3"
-          status={checked === "element3" ? "checked" : "unchecked"}
-          onPress={() => setChecked("element3")}
+          value={getRecurrenceString(Recurrence.NONE)}
+          status={checked === Recurrence.NONE ? "checked" : "unchecked"}
+          onPress={() => setChecked(Recurrence.NONE)}
           color="#6200EE"
         />
-        <Text onPress={() => setChecked("element3")}>None</Text>
+        <Text onPress={() => setChecked(Recurrence.NONE)}>{getRecurrenceString(Recurrence.NONE)}</Text>
       </View>
     </View>
   );
