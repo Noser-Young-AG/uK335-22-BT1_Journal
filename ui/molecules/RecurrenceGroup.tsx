@@ -1,19 +1,20 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { RadioButton } from "react-native-paper";
+import GroupTitle from "../atoms/GroupTitle";
 
 export default function RecurrenceGroup() {
   const [checked, setChecked] = React.useState("");
 
   return (
     <View style={styles.container}>
-      <Text>Recurrence</Text>
+      <GroupTitle title={"Recurrence"}></GroupTitle>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <RadioButton.Android
           value="element1"
           status={checked === "element1" ? "checked" : "unchecked"}
           onPress={() => setChecked("element1")}
-          color="purple"
+          color="#6200EE"
         />
         <Text onPress={() => setChecked("element1")}>Weekly</Text>
       </View>
@@ -22,7 +23,7 @@ export default function RecurrenceGroup() {
           value="element2"
           status={checked === "element2" ? "checked" : "unchecked"}
           onPress={() => setChecked("element2")}
-          color="purple"
+          color="#6200EE"
         />
         <Text onPress={() => setChecked("element2")}>Monthly</Text>
       </View>
@@ -31,7 +32,7 @@ export default function RecurrenceGroup() {
           value="element3"
           status={checked === "element3" ? "checked" : "unchecked"}
           onPress={() => setChecked("element3")}
-          color="purple"
+          color="#6200EE"
         />
         <Text onPress={() => setChecked("element3")}>None</Text>
       </View>
@@ -41,7 +42,6 @@ export default function RecurrenceGroup() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "#fff",
     width: "90%",
   },
