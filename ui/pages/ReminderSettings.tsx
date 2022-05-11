@@ -1,8 +1,16 @@
-import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import Recurrence from "../../types/Recurrence";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, View } from "react-native";
+import { Text } from "react-native-paper";
+import NavigationPages from "../../types/NavigationPages";
+import Recurrence, { getRecurrenceString } from "../../types/Recurrence";
 import { Reminder } from "../../types/Reminder";
+import {
+  deleteReminder,
+  loadReminder,
+  updateReminder,
+} from "../../utils/Persistence";
+import ButtonElement from "../atoms/ButtonElement";
 import Dropdown from "../atoms/Dropdown";
 import Inputfield from "../atoms/Inputfield";
 import Timepicker from "../atoms/Timepicker";
@@ -15,35 +23,115 @@ import MultiselectWeekdaysGroup from "../organisms/MultiselectWeekdaysGroup";
 import Navbar from "../organisms/Navbar";
 import ReminderCardGroup from "../organisms/ReminderCardGroup";
 
-
-function ReminderSettings( {navigation} ) {
+function ReminderSettings({ navigation }) {
+  const [reminder, setReminder] = useState<Reminder>();
+  const [weekday, setWeekday] = useState<string>("Friday");
+  const [recurrence, setRecurrence] = useState<number>(Recurrence.WEEKLY);
+  const [recurringAmount, setRecurringAmount] = useState<number | string | undefined>(recurrence !== Recurrence.NONE ? "forever" : undefined);
   const [time, setTime] = useState(new Date());
   const [buttonText, setButtonText] = useState(
     time.getHours() + ":" + time.getMinutes()
   );
 
-const onTimeChange = (date: Date) => {
-  if (date instanceof Date && date != null) {
-    setTime(date);
-    if (date.getHours() <= 9 && date.getMinutes() <= 9) {
-      setButtonText("0" + date.getHours() + ":0" + date.getMinutes());
-    } else if (date.getHours() > 9 && date.getMinutes() <= 9) {
-      setButtonText(date.getHours() + ":0" + date.getMinutes());
-    } else if (date.getHours() <= 9 && date.getMinutes() > 9) {
-      setButtonText("0" + date.getHours() + ":" + date.getMinutes());
-    } else {
-      setButtonText(date.getHours() + ":" + date.getMinutes());
+
+  // const [weekday, setWeekday] = useState<string>(reminder != undefined ? reminder.weekday : "Friday");
+  // const [recurrence, setRecurrence] = useState<number>(reminder != undefined ? reminder.recurrence : Recurrence.NONE);
+  // const [recurringAmount, setRecurringAmount] = useState<number | string | undefined>(reminder != undefined ? reminder.recurrence : recurrence !== Recurrence.NONE ? "forever" : undefined);
+
+  useEffect(() => {
+    const localReminder = loadReminder();
+    localReminder.then((r) => {
+      console.log(JSON.stringify(r));
+      setReminder(r);
+      if (r != undefined) {
+        console.log("Reminder not undefined");
+        setWeekday(r.weekday);
+        setRecurrence(r.recurrence);
+        setRecurringAmount(r.recurringAmount);
+      }
+    });
+  }, []);
+
+  // useEffect(() => {
+  //   if (reminder != null) {
+  //     // updateReminder(reminder);
+  //     // setWeekday(reminder.weekday);
+  //     // setRecurrence(reminder.recurrence);
+  //     // setRecurringAmount(reminder.recurringAmount);
+  //   } else {
+  //     // deleteReminder();
+  //   }
+  // }, [reminder]);
+
+  useEffect(() => {
+    console.log("UE Weekday: " + weekday);
+    console.log("UE Recurrence: " + getRecurrenceString(recurrence));
+  }, [weekday, recurrence]);
+
+  useEffect(() => {
+    if (recurrence === Recurrence.NONE) {
+      setRecurringAmount(undefined);
+    }
+  }, [recurrence]);
+
+  const saveReminderAndClose = () => {
+    updateReminder(
+      new Reminder(
+        recurrence,
+        weekday!,
+        20,
+        15,
+        recurringAmount
+      )
+    );
+    
+    navigation.navigate(NavigationPages.HOME);
+  }
+  
+  const onTimeChange = (date: Date) => {
+    if (date instanceof Date && date != null) {
+      setTime(date);
+      if (date.getHours() <= 9 && date.getMinutes() <= 9) {
+        setButtonText("0" + date.getHours() + ":0" + date.getMinutes());
+      } else if (date.getHours() > 9 && date.getMinutes() <= 9) {
+        setButtonText(date.getHours() + ":0" + date.getMinutes());
+      } else if (date.getHours() <= 9 && date.getMinutes() > 9) {
+        setButtonText("0" + date.getHours() + ":" + date.getMinutes());
+      } else {
+        setButtonText(date.getHours() + ":" + date.getMinutes());
+      }
+    }
+  };
+
+  const getRecurringAmountElement = () => {
+    if (recurrence !== Recurrence.NONE) {
+      return (
+        <RepeatInputGroup
+          recurringAmount={recurringAmount}
+          recurringAmountChanged={(x) => setRecurringAmount(x)}
+        />
+      )
     }
   }
-};
 
   return (
-    <ScrollView style={styles.container}>
-      <MultiselectWeekdaysGroup />
-      <RecurrenceGroup />
-      <RepeatInputGroup />
+    <View style={styles.container}> // TODO: Convert to ScrollView
+      <MultiselectWeekdaysGroup
+        selected={reminder != undefined ? reminder.weekday : weekday}
+        selectedChanged={(x) => setWeekday(x)}
+      />
+      <RecurrenceGroup
+        selected={recurrence}
+        selectedChanged={(x) => setRecurrence(x)}
+      />
+      {getRecurringAmountElement()}
+      {/* <RepeatInputGroup
+        recurringAmount={recurringAmount}
+        recurringAmountChanged={(x) => setRecurringAmount(x)}
+      /> */}
+      <ButtonElement name="Save" color="#01A299" onPress={() => saveReminderAndClose()} />
       <TimeGroup label="Choose Time" onChange={onTimeChange} value={time}/>
-    </ScrollView>
+    </View>
   );
 }
 
@@ -52,7 +140,7 @@ const styles = StyleSheet.create({
     flex: 1,
     zIndex: 10,
     backgroundColor: "#fff",
-    padding: '2%',
+    padding: "2%",
   },
 });
 

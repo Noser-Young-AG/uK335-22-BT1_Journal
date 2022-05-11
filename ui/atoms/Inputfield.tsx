@@ -1,23 +1,40 @@
-import React from 'react'
-import { KeyboardTypeOptions } from 'react-native';
-import { StyleProp, View, ViewStyle } from 'react-native'
-import { TextInput } from 'react-native-paper';
-import GroupTitle from './GroupTitle';
-import TitleElement from './TitleElement'
+import React, { useEffect, useState } from "react";
+import { KeyboardTypeOptions } from "react-native";
+import { StyleProp, View, ViewStyle } from "react-native";
+import { TextInput } from "react-native-paper";
+import GroupTitle from "./GroupTitle";
+import TitleElement from "./TitleElement";
 
 type Inputfield = {
-    label?: string;
-    affix?: string;
-    placeholder?: string;
-    style?: StyleProp<ViewStyle>;
-    type?: KeyboardTypeOptions;
-    disabled?: boolean;
-  };
+  value?: string;
+  label?: string;
+  affix?: string;
+  placeholder?: string;
+  style?: StyleProp<ViewStyle>;
+  type?: KeyboardTypeOptions;
+  disabled?: boolean;
+  onChange: (value: string) => void;
+};
 
-export default function Inputfield(prop: Inputfield) {
+export default function Inputfield(props: Inputfield) {
+  const [value, setValue] = useState(props.value);
+
+  useEffect(() => {
+    setValue(props.value);
+  }, [props.value]);
+
   return (
-    <View style={prop.style}>
-      <TextInput mode='outlined' label={prop.label} right={<TextInput.Affix text={prop.affix}/>} keyboardType={prop.type} placeholder={prop.placeholder} disabled={prop.disabled}/>
+    <View style={props.style}>
+      <TextInput
+        value={value}
+        mode="outlined"
+        label={props.label}
+        right={<TextInput.Affix text={props.affix} />}
+        keyboardType={props.type}
+        placeholder={props.placeholder}
+        disabled={props.disabled}
+        onChangeText={props.onChange}
+      />
     </View>
-  )
+  );
 }
