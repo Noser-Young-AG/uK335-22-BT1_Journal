@@ -9,30 +9,30 @@ import Recurrence from './types/Recurrence';
 import { Reminder } from './types/Reminder';
 import MultiselectWeekdaysGroup from './ui/organisms/MultiselectWeekdaysGroup';
 import Navbar from './ui/organisms/Navbar';
+import RecurrenceGroup from './ui/molecules/RecurrenceGroup';
+import NotificationForReminder from './service/NotificationForReminder';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <TitleElement name={'NO REMINDERS SET'}></TitleElement>
-      <Navbar title='Home'></Navbar>
-      <ReminderCard
-        reminder={
-          new Reminder(
-            Recurrence.WEEKLY,
-            "Monday", 16, 30, 7,
-          )
-        }
-        onEdit={() => console.log("Edit")}
-        onDelete={() => console.log("Delete")} 
-      />
+    <View style={styles.wrapper}>
       <StatusBar style="auto" />
+      <NotificationForReminder></NotificationForReminder>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  wrapper: {
     flex: 1,
-    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+    backgroundColor: 'white',
   },
-});
+  buttonsWrapper: {
+    marginTop: 50,
+  },
+  buttonWrapper: {
+    marginBottom: 20,
+  },
+ });
