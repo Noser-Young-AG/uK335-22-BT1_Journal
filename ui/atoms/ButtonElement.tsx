@@ -4,6 +4,7 @@ import { Button } from "react-native-paper";
 export default function ButtonElement(props: {
   name: string;
   color: string;
+  onPress: () => void;
 }) {
   const nullableIcon = () => null;
 
@@ -11,7 +12,7 @@ export default function ButtonElement(props: {
       <Button
         icon={nullableIcon}
         mode="contained"
-        onPress={() => console.log("Pressed")}
+        onPress={() => props.onPress()}
         color={props.color}
       >
         {props.name}
