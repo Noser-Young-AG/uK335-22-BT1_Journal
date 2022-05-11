@@ -25,7 +25,7 @@ function ReminderSettings( {navigation} ) {
       deleteReminder();
     }
   }, [reminder]);
-  
+
   return (
     <View style={styles.container}>
       <MultiselectWeekdaysGroup />

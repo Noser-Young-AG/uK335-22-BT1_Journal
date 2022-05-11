@@ -35,10 +35,10 @@ function Home({ navigation }) {
         reminder={reminder}
         onEdit={() => navigation.navigate(NavigationPages.REMINDER_SETTINGS)}
         onDelete={() => setReminder(undefined)}
-        // onCreate={() => navigation.navigate(NavigationPages.REMINDER_SETTINGS)}
-        onCreate={() => {
-          setReminder(new Reminder(Recurrence.WEEKLY, "Monday", 12, 12, "forever"));
-        }}
+        onCreate={() => navigation.navigate(NavigationPages.REMINDER_SETTINGS)}
+        // onCreate={() => {
+        //   setReminder(new Reminder(Recurrence.WEEKLY, "Monday", 12, 12, "forever"));
+        // }}
       />
     </View>
   );
