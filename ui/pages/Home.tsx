@@ -19,7 +19,6 @@ function Home({ navigation }) {
     localReminder.then((r) => {
       setReminder(r);
     })
-    // setReminder(loadReminder());
   }, []);
 
   useEffect(() => {
