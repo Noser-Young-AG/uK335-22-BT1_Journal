@@ -6,6 +6,7 @@ import Home from './ui/pages/Home';
 import ReminderSettings from './ui/pages/ReminderSettings';
 import NavigationPages from './types/NavigationPages';
 
+
 /**
  * @deprecated Method should not be used.
  */
@@ -39,7 +40,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 0.4,
     backgroundColor: '#fff',
   },
 });

@@ -27,8 +27,8 @@ function MultiselectWeekdaysGroup() {
 
 const styles = StyleSheet.create({
     container: {
+      marginTop: '40%',
         margin: '2%',
-        marginTop: '15%',
         width: '100%'
     }
   });
