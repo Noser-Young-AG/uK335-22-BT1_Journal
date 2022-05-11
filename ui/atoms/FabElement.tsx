@@ -1,25 +1,32 @@
-import React from 'react'
-import { StyleSheet } from 'react-native';
-import { FAB } from 'react-native-paper';
+import React from "react";
+import { StyleSheet } from "react-native";
+import { FAB } from "react-native-paper";
 
-export default function FabElement(props: {name: string}) {
-  return (
-    <FAB
-    style={styles.fab}
-    small
-    icon="plus"
-    label={props.name}
-    color='#FFFFFF'
-    onPress={() => console.log('Pressed')}
-  />
-  )
-}
+type FabElementProps = {
+  name: string;
+  hidden: boolean;
+  onPress: () => void;
+};
 
-const styles = StyleSheet.create({
+export default function FabElement(props: FabElementProps) {
+  const styles = StyleSheet.create({
     fab: {
-      position: 'absolute',
+      position: "absolute",
       margin: 16,
       right: 10,
       bottom: 10,
+      display: props.hidden ? "none" : "flex",
     },
-  })
+  });
+
+  return (
+    <FAB
+      style={styles.fab}
+      small
+      icon="plus"
+      label={props.name}
+      color="#FFF"
+      onPress={props.onPress}
+    />
+  );
+}

@@ -1,38 +1,49 @@
-import { StatusBar } from 'expo-status-bar';
-import ButtonElement from './ui/atoms/ButtonElement';
-import FabElement from './ui/atoms/FabElement';
-import TitleElement from './ui/atoms/TitleElement';
-import ActionButtons from './ui/organisms/ActionButtons';
-import { StyleSheet, Text, View } from 'react-native';
-import ReminderCard from './ui/molecules/ReminderCard';
-import Recurrence from './types/Recurrence';
-import { Reminder } from './types/Reminder';
-import MultiselectWeekdaysGroup from './ui/organisms/MultiselectWeekdaysGroup';
-import Navbar from './ui/organisms/Navbar';
-import RecurrenceGroup from './ui/molecules/RecurrenceGroup';
-import NotificationForReminder from './service/NotificationForReminder';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StyleSheet, Text, View, Button, AsyncStorage } from 'react-native';
+import Home from './ui/pages/Home';
+import ReminderSettings from './ui/pages/ReminderSettings';
+import NavigationPages from './types/NavigationPages';
+
+
+/**
+ * @deprecated Method should not be used.
+ */
+function HomeScreen({ navigation }) {
+  return (
+    <Home navigation={navigation} />
+  )
+}
+
+/**
+ * @deprecated Method should not be used.
+ */
+function ReminderSettingsScreen({ navigation }) {
+  return (
+    <ReminderSettings navigation={navigation} />
+  )
+}
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.wrapper}>
-      <StatusBar style="auto" />
-      <NotificationForReminder></NotificationForReminder>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName={NavigationPages.HOME}>
+        <Stack.Screen name={NavigationPages.HOME} component={Home} options={{headerStyle: {
+          backgroundColor: '#6200EE'
+        }, headerTintColor: '#fff', headerTitleAlign: 'center'}} />
+        <Stack.Screen name={NavigationPages.REMINDER_SETTINGS} component={ReminderSettings} options={{headerStyle: {
+          backgroundColor: '#6200EE'
+        }, headerTintColor: '#fff', headerTitleAlign: 'center'}} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-    backgroundColor: 'white',
+  container: {
+    backgroundColor: '#fff',
   },
-  buttonsWrapper: {
-    marginTop: 50,
-  },
-  buttonWrapper: {
-    marginBottom: 20,
-  },
- });
+});
