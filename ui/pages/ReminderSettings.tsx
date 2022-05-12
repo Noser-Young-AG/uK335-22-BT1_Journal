@@ -9,14 +9,12 @@ import RecurrenceGroup from "../molecules/RecurrenceGroup";
 import RepeatInputGroup from "../molecules/RepeatInputGroup";
 import TimeGroup from "../molecules/TimeGroup";
 import MultiselectWeekdaysGroup from "../organisms/MultiselectWeekdaysGroup";
-import { sendNotification, initializeNotification, cancelAllNotifications } from "../../service/ReminderNotification";
+import { initializeNotification, cancelAllNotifications } from "../../service/ReminderNotification";
 
 
 /**
- *
- * @param navigation used for navigating through pages with the help of an enum that consists of pages {@link NavigationPages}
- *
- * the {@link ReminderSettings } function is a page that consists of following components.
+ * Page that consists of following components.
+ * <br/>
  * <ul>
  *     <li>The {@link MultiselectWeekdaysGroup} molecule</li>
  *     <li>The {@link RecurrenceGroup} molecule</li>
@@ -24,7 +22,7 @@ import { sendNotification, initializeNotification, cancelAllNotifications } from
  *     <li>The {@link TimeGroup} molecule</li>
  * </ul>
  * all of these components build our ReminderSettings page
- *
+ * @param navigation used for navigating through pages with the help of an enum that consists of pages {@link NavigationPages}
  */
 function ReminderSettings({ navigation }) {
   const [reminder, setReminder] = useState<Reminder>();
@@ -38,10 +36,8 @@ function ReminderSettings({ navigation }) {
   useEffect(() => {
     const localReminder = loadReminder();
     localReminder.then((r) => {
-      console.log(JSON.stringify(r));
       setReminder(r);
       if (r != undefined) {
-        console.log("Reminder not undefined");
         setWeekday(r.weekday);
         setRecurrence(r.recurrence);
         setRecurringAmount(r.recurringAmount);
@@ -50,8 +46,6 @@ function ReminderSettings({ navigation }) {
   }, []);
 
   useEffect(() => {
-    console.log("UE Weekday: " + weekday);
-    console.log("UE Recurrence: " + getRecurrenceString(recurrence));
   }, [weekday, recurrence]);
 
   useEffect(() => {

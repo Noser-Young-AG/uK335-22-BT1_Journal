@@ -8,9 +8,9 @@ import { useFocusEffect } from "@react-navigation/native";
 import { cancelAllNotifications } from "../../service/ReminderNotification";
 
 /**
- *
- * @param navigation used for navigating through pages with the help of an enum that consists of pages {@link NavigationPages}
- *
+ * Home displays all content visible on the Home page.
+ * @param navigation  Used for navigating through pages with the help of an enum that consists of pages {@link NavigationPages}
+ *  <br/>
  * the {@link Home } function is a page that consists of the {@link ReminderCardGroup} molecule. This Card contains all informations
  * about the reminder after its creation
  *
@@ -20,7 +20,6 @@ function Home({ navigation }) {
   const [reminder, setReminder] = useState<Reminder>();
 
   useEffect(() => {
-    console.log("First use effect");
     const localReminder = loadReminder();
     localReminder.then((r) => {
       setReminder(r);
@@ -29,7 +28,6 @@ function Home({ navigation }) {
 
   useFocusEffect(
     React.useCallback(() => {
-      console.log("Focus use effect");
       loadReminder()
         .then(r => setReminder(r))
         .catch(e => console.log(e));
@@ -37,7 +35,6 @@ function Home({ navigation }) {
   );
 
   useEffect(() => {
-    console.log("Reminder use effect");
     if (reminder == null) {
       deleteReminder();
     }

@@ -12,6 +12,11 @@ type ReminderCardGroupProps = {
   onCreate: () => void;
 };
 
+/**
+ * Display either reminder card or create-button if nothing is passed.  
+ * @param props Reminder object with edit, create, and delete functions
+ * @returns React-DOM
+ */
 function ReminderCardGroup(props: ReminderCardGroupProps) {
   const styles = StyleSheet.create({
     container: {

@@ -1,15 +1,8 @@
 import Recurrence from "./Recurrence";
 
-export type ReminderType = {
-    recurrence: Recurrence,
-    weekday: string,
-    hour: number,
-    minute: number,
-    recurringAmount?: number | string,
-    // onEdit: () => void;
-    // onDelete: () => void;
-}
-
+/**
+ * Reminder class for data transfer and persistence.
+ */
 export class Reminder {
     recurrence: Recurrence;
     weekday: string;
