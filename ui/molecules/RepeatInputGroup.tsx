@@ -15,15 +15,20 @@ export default function RepeatInputGroup(props: RepeatInputGroupProps) {
   const [recurringAmount, setRecurringAmount] = useState(props.recurringAmount);
 
   useEffect(() => {
-    props.recurringAmountChanged(checked ? "forever" : Number(recurringAmount));
+    console.log("recurringamount states use effect " + recurringAmount);
+    if (recurringAmount !== undefined) {
+      props.recurringAmountChanged(checked ? "forever" : Number(recurringAmount));
+    }
   }, [checked, recurringAmount]);
 
   useEffect(() => {
+    console.log("recurringamount props use effect " + props.recurringAmount);
+    
     setChecked(props.recurringAmount === "forever");
     if (typeof props.recurringAmount === "number") {
-      setRecurringAmount(props.recurringAmount )
+      setRecurringAmount(props.recurringAmount)
     }
-  }, [props.recurringAmount, recurringAmount]);
+  }, [props.recurringAmount]);
 
   // useEffect(() => {
   //   setChecked(props.recurringAmount === "forever");
@@ -53,11 +58,12 @@ export default function RepeatInputGroup(props: RepeatInputGroupProps) {
         <Inputfield
           onChange={(value) => setRecurringAmount(value)}
           // value={typeof recurringAmount === "number" ? recurringAmount.toString() : undefined}
-          value={recurringAmount!.toString()}
+          // value={recurringAmount !== undefined ? (typeof recurringAmount === "number" ? recurringAmount.toString() : undefined) : undefined}
+          value={recurringAmount !== undefined && typeof recurringAmount !== "string" && !Number.isNaN(recurringAmount) ? recurringAmount.toString() : undefined}
           disabled={checked}
           label="Repetition"
           affix="/100"
-          placeholder="amount of repetitions"
+          placeholder="Amount of repetitions"
           style={styles.inputfield}
           type={"number-pad"}
         />

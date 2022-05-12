@@ -1,5 +1,5 @@
 import RNDateTimePicker from "@react-native-community/datetimepicker";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { Button, Text } from "react-native-paper";
 import { getGridCount } from "react-native-paper-dates/lib/typescript/Date/dateUtils";
@@ -13,12 +13,18 @@ type timeGroupProps = {
 
 export default function TimeGroup(props: timeGroupProps) {
   const [visible, setVisibility] = useState(false);
-  const [time, setTime] = useState(new Date)
+  const [time, setTime] = useState(props.value);
+
+  useEffect(() => {
+    setTime(props.value);
+  }, [props.value]);
+
   const onChange = (event: Event, date: Date): void => {
     setVisibility(false);
     props.onChange(date);
     setTime(date);
   };
+
   const onClick = () => {
     console.log(true);
     setVisibility(true);
@@ -28,8 +34,8 @@ export default function TimeGroup(props: timeGroupProps) {
 <>
       <GroupTitle title="Time" />
       <View style={styles.container}>
-      <Button mode="contained" onPress={onClick} style={styles.button} icon={"clock-outline"}>
-        {time.toLocaleTimeString().substring(0,5)}
+      <Button mode="outlined" color="black" onPress={onClick} style={styles.button} icon={"clock-outline"}>
+        {time?.toLocaleTimeString().substring(0,5)}
       </Button>
       {visible ? (
         <RNDateTimePicker
@@ -53,8 +59,7 @@ const styles = StyleSheet.create({
     },
     button: {
         margin: '2%',
-        width: '96%',
-
+        width: '30%',
     },
     text: {
         textAlign: 'center',

@@ -14,6 +14,7 @@ export default function ButtonElement(props: {
         mode="contained"
         onPress={() => props.onPress()}
         color={props.color}
+        style={{margin: "2%"}}
       >
         {props.name}
       </Button>
