@@ -33,7 +33,7 @@ function ReminderCardGroup(props: ReminderCardGroupProps) {
     return (
       <View style={styles.container}>
         <ReminderCard
-          reminder={props.reminder!}
+          reminder={props.reminder}
           onEdit={props.onEdit}
           onDelete={props.onDelete}
         />

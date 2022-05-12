@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { KeyboardTypeOptions } from "react-native";
-import { StyleProp, View, ViewStyle } from "react-native";
+import { KeyboardTypeOptions, StyleProp, View, ViewStyle } from "react-native";
 import { TextInput } from "react-native-paper";
 
-type Inputfield = {
+type InputfieldProps = {
   value?: string;
   label?: string;
   placeholder?: string;
@@ -13,7 +12,7 @@ type Inputfield = {
   onChange: (value: string) => void;
 };
 
-export default function Inputfield(props: Inputfield) {
+export default function Inputfield(props: InputfieldProps) {
   const [value, setValue] = useState(props.value);
 
   useEffect(() => {

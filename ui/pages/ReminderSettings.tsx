@@ -18,9 +18,6 @@ function ReminderSettings({ navigation }) {
     number | string | undefined
   >(recurrence !== Recurrence.NONE ? "forever" : undefined);
   const [time, setTime] = useState(new Date());
-  const [buttonText, setButtonText] = useState(
-    time.getHours() + ":" + time.getMinutes()
-  );
 
   useEffect(() => {
     const localReminder = loadReminder();
@@ -48,23 +45,14 @@ function ReminderSettings({ navigation }) {
   }, [recurrence]);
 
   const saveReminderAndClose = () => {
-    updateReminder(new Reminder(recurrence, weekday!, 20, 15, recurringAmount));
+    updateReminder(new Reminder(recurrence, weekday, 20, 15, recurringAmount));
 
     navigation.navigate(NavigationPages.HOME);
   };
 
   const onTimeChange = (date: Date) => {
-    if (date instanceof Date && date != null) {
+    if (date != null) {
       setTime(date);
-      if (date.getHours() <= 9 && date.getMinutes() <= 9) {
-        setButtonText("0" + date.getHours() + ":0" + date.getMinutes());
-      } else if (date.getHours() > 9 && date.getMinutes() <= 9) {
-        setButtonText(date.getHours() + ":0" + date.getMinutes());
-      } else if (date.getHours() <= 9 && date.getMinutes() > 9) {
-        setButtonText("0" + date.getHours() + ":" + date.getMinutes());
-      } else {
-        setButtonText(date.getHours() + ":" + date.getMinutes());
-      }
     }
   };
 

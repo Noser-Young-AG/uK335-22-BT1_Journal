@@ -3,7 +3,6 @@ import { View, StyleSheet } from "react-native";
 import { Checkbox, Text } from "react-native-paper";
 import GroupTitle from "../atoms/GroupTitle";
 import Inputfield from "../atoms/Inputfield";
-import MultiselectElement from "../atoms/MultiselectElement";
 
 type RepeatInputGroupProps = {
   recurringAmount?: number | string;
