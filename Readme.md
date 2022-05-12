@@ -65,5 +65,6 @@ Hier sieht ist eine Liste von den Versionen der verschiedenen Komponenten, die w
 | Expo   | v5.4.0   |
 | Nodejs | v16.13.1 |
 | Npm    | v8.1.2   |
+| Java	 | 11       |
 
 
