@@ -33,11 +33,6 @@ function ReminderSettings({ navigation }) {
     time.getHours() + ":" + time.getMinutes()
   );
 
-
-  // const [weekday, setWeekday] = useState<string>(reminder != undefined ? reminder.weekday : "Friday");
-  // const [recurrence, setRecurrence] = useState<number>(reminder != undefined ? reminder.recurrence : Recurrence.NONE);
-  // const [recurringAmount, setRecurringAmount] = useState<number | string | undefined>(reminder != undefined ? reminder.recurrence : recurrence !== Recurrence.NONE ? "forever" : undefined);
-
   useEffect(() => {
     const localReminder = loadReminder();
     localReminder.then((r) => {
@@ -51,17 +46,6 @@ function ReminderSettings({ navigation }) {
       }
     });
   }, []);
-
-  // useEffect(() => {
-  //   if (reminder != null) {
-  //     // updateReminder(reminder);
-  //     // setWeekday(reminder.weekday);
-  //     // setRecurrence(reminder.recurrence);
-  //     // setRecurringAmount(reminder.recurringAmount);
-  //   } else {
-  //     // deleteReminder();
-  //   }
-  // }, [reminder]);
 
   useEffect(() => {
     console.log("UE Weekday: " + weekday);
@@ -125,10 +109,6 @@ function ReminderSettings({ navigation }) {
         selectedChanged={(x) => setRecurrence(x)}
       />
       {getRecurringAmountElement()}
-      {/* <RepeatInputGroup
-        recurringAmount={recurringAmount}
-        recurringAmountChanged={(x) => setRecurringAmount(x)}
-      /> */}
       <TimeGroup label="Choose Time" onChange={onTimeChange} value={time} />
       <ButtonElement name="Save" color="#01A299" onPress={() => saveReminderAndClose()} />
     </View>
