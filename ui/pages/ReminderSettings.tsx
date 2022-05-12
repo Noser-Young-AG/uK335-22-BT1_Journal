@@ -22,6 +22,7 @@ import TitleGroup from "../molecules/TitleGroup";
 import MultiselectWeekdaysGroup from "../organisms/MultiselectWeekdaysGroup";
 import Navbar from "../organisms/Navbar";
 import ReminderCardGroup from "../organisms/ReminderCardGroup";
+import { sendNotification, initializeNotification, cancelAllNotifications } from "../../service/ReminderNotification";
 
 function ReminderSettings({ navigation }) {
   const [reminder, setReminder] = useState<Reminder>();
@@ -76,6 +77,9 @@ function ReminderSettings({ navigation }) {
         recurringAmount
       )
     );
+
+    cancelAllNotifications();
+    initializeNotification();
     
     navigation.navigate(NavigationPages.HOME);
   }

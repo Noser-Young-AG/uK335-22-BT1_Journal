@@ -3,14 +3,15 @@ import { Reminder } from "../types/Reminder";
 
 const REMINDER_STORAGE_KEY = "@reminder";
 
-export const loadReminder = async () => {
+export const loadReminder = async () : Promise<Reminder> => {
   try {
     let storedReminder = await AsyncStorage.getItem(REMINDER_STORAGE_KEY);
     if (storedReminder !== null) {
       return JSON.parse(storedReminder);
     }
   } catch (e) {
-    console.error("Failed to load reminder.", e);
+    console.log("Failed to load reminder.", e);
+    return Promise.reject(e);
   }
 };
 

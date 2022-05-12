@@ -9,6 +9,7 @@ import Navbar from "../organisms/Navbar";
 import ReminderCardGroup from "../organisms/ReminderCardGroup";
 import {loadReminder, deleteReminder, updateReminder} from '../../utils/Persistence'
 import { useFocusEffect } from "@react-navigation/native";
+import { cancelAllNotifications } from "../../service/ReminderNotification";
 
 const REMINDER_STORAGE_KEY = "@reminder";
 
@@ -26,10 +27,9 @@ function Home({ navigation }) {
   useFocusEffect(
     React.useCallback(() => {
       console.log("Focus use effect");
-      const localReminder = loadReminder();
-      localReminder.then((r) => {
-        setReminder(r);
-      })
+      loadReminder()
+        .then(r => setReminder(r))
+        .catch(e => console.log(e));
     }, [])
   )
 
@@ -40,12 +40,17 @@ function Home({ navigation }) {
     }
   }, [reminder]);
 
+  const onDelete = () => {
+    setReminder(undefined);
+    cancelAllNotifications();
+  }
+
   return (
     <View style={styles.container}>
       <ReminderCardGroup
         reminder={reminder}
         onEdit={() => navigation.navigate(NavigationPages.REMINDER_SETTINGS)}
-        onDelete={() => setReminder(undefined)}
+        onDelete={() => onDelete()}
         onCreate={() => navigation.navigate(NavigationPages.REMINDER_SETTINGS)}
         // onCreate={() => {
         //   setReminder(new Reminder(Recurrence.WEEKLY, "Monday", 12, 12, "forever"));
