@@ -9,6 +9,7 @@ import RecurrenceGroup from "../molecules/RecurrenceGroup";
 import RepeatInputGroup from "../molecules/RepeatInputGroup";
 import TimeGroup from "../molecules/TimeGroup";
 import MultiselectWeekdaysGroup from "../organisms/MultiselectWeekdaysGroup";
+import { sendNotification, initializeNotification, cancelAllNotifications } from "../../service/ReminderNotification";
 
 function ReminderSettings({ navigation }) {
   const [reminder, setReminder] = useState<Reminder>();
@@ -45,8 +46,18 @@ function ReminderSettings({ navigation }) {
   }, [recurrence]);
 
   const saveReminderAndClose = () => {
-    updateReminder(new Reminder(recurrence, weekday, 20, 15, recurringAmount));
+    updateReminder(
+      new Reminder(
+        recurrence,
+        weekday,
+        time.getHours(),
+        time.getMinutes(),
+        recurringAmount
+      )
+    );
 
+    cancelAllNotifications();
+    initializeNotification();
     navigation.navigate(NavigationPages.HOME);
   };
 
