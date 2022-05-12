@@ -1,33 +1,22 @@
-import { ScrollView } from "react-native-gesture-handler";
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { Text } from "react-native-paper";
 import NavigationPages from "../../types/NavigationPages";
 import Recurrence, { getRecurrenceString } from "../../types/Recurrence";
 import { Reminder } from "../../types/Reminder";
-import {
-  deleteReminder,
-  loadReminder,
-  updateReminder,
-} from "../../utils/Persistence";
+import { loadReminder, updateReminder } from "../../utils/Persistence";
 import ButtonElement from "../atoms/ButtonElement";
-import Dropdown from "../atoms/Dropdown";
-import Inputfield from "../atoms/Inputfield";
-import Timepicker from "../atoms/Timepicker";
-import MultiselectWeekdays from "../molecules/MultiselectWeekdays";
 import RecurrenceGroup from "../molecules/RecurrenceGroup";
 import RepeatInputGroup from "../molecules/RepeatInputGroup";
 import TimeGroup from "../molecules/TimeGroup";
-import TitleGroup from "../molecules/TitleGroup";
 import MultiselectWeekdaysGroup from "../organisms/MultiselectWeekdaysGroup";
-import Navbar from "../organisms/Navbar";
-import ReminderCardGroup from "../organisms/ReminderCardGroup";
 
 function ReminderSettings({ navigation }) {
   const [reminder, setReminder] = useState<Reminder>();
   const [weekday, setWeekday] = useState<string>("Friday");
   const [recurrence, setRecurrence] = useState<number>(Recurrence.WEEKLY);
-  const [recurringAmount, setRecurringAmount] = useState<number | string | undefined>(recurrence !== Recurrence.NONE ? "forever" : undefined);
+  const [recurringAmount, setRecurringAmount] = useState<
+    number | string | undefined
+  >(recurrence !== Recurrence.NONE ? "forever" : undefined);
   const [time, setTime] = useState(new Date());
   const [buttonText, setButtonText] = useState(
     time.getHours() + ":" + time.getMinutes()
@@ -43,10 +32,6 @@ function ReminderSettings({ navigation }) {
         setWeekday(r.weekday);
         setRecurrence(r.recurrence);
         setRecurringAmount(r.recurringAmount);
-
-        let localTime = new Date();
-        localTime.setHours(r.hour, r.minute);
-        setTime(localTime);
       }
     });
   }, []);
@@ -62,24 +47,12 @@ function ReminderSettings({ navigation }) {
     }
   }, [recurrence]);
 
-  useEffect(() => {
-    setButtonText(time.getHours() + ":" + time.getMinutes());
-  }, [time]);
-
   const saveReminderAndClose = () => {
-    updateReminder(
-      new Reminder(
-        recurrence,
-        weekday,
-        time.getHours(),
-        time.getMinutes(),
-        recurringAmount
-      )
-    );
-    
+    updateReminder(new Reminder(recurrence, weekday!, 20, 15, recurringAmount));
+
     navigation.navigate(NavigationPages.HOME);
-  }
-  
+  };
+
   const onTimeChange = (date: Date) => {
     if (date instanceof Date && date != null) {
       setTime(date);
@@ -102,9 +75,9 @@ function ReminderSettings({ navigation }) {
           recurringAmount={recurringAmount}
           recurringAmountChanged={(x) => setRecurringAmount(x)}
         />
-      )
+      );
     }
-  }
+  };
 
   return (
     <View style={styles.container}>
@@ -117,8 +90,12 @@ function ReminderSettings({ navigation }) {
         selectedChanged={(x) => setRecurrence(x)}
       />
       {getRecurringAmountElement()}
+      <ButtonElement
+        name="Save"
+        color="#01A299"
+        onPress={() => saveReminderAndClose()}
+      />
       <TimeGroup label="Choose Time" onChange={onTimeChange} value={time} />
-      <ButtonElement name="Save" color="#01A299" onPress={() => saveReminderAndClose()} />
     </View>
   );
 }

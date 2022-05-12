@@ -12,15 +12,10 @@ type selectProps = {
 export default function MultiselectElement(props: selectProps) {
   const [check, setChecked] = useState(props.checked);
 
-  // useEffect(() => {
-  //   setChecked(props.checked);
-  // }, [props.checked])
-
   useEffect(() => {
     setChecked(props.checked);
-    // console.log("Change in props: " + props.checked);
     console.log("Change in element: " + check);
-  }, [props.checked, check])
+  }, [props.checked, check]);
 
   const emptyIcon = () => null;
 
@@ -37,9 +32,8 @@ export default function MultiselectElement(props: selectProps) {
   });
 
   const onCheck = () => {
-    // setChecked(!check);
     props.onChange();
-  }
+  };
 
   return (
     <>

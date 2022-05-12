@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 
 function TitleElement(props: { name: string }) {
   return <Text style={styles.text}>{props.name}</Text>;
@@ -9,8 +8,6 @@ function TitleElement(props: { name: string }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // alignItems: 'center',
-    // justifyContent: 'center',
     backgroundColor: "#fff",
   },
   text: {
@@ -20,4 +17,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TitleElement
+export default TitleElement;
