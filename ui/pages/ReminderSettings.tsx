@@ -43,6 +43,10 @@ function ReminderSettings({ navigation }) {
         setWeekday(r.weekday);
         setRecurrence(r.recurrence);
         setRecurringAmount(r.recurringAmount);
+
+        let localTime = new Date();
+        localTime.setHours(r.hour, r.minute);
+        setTime(localTime);
       }
     });
   }, []);
@@ -58,13 +62,17 @@ function ReminderSettings({ navigation }) {
     }
   }, [recurrence]);
 
+  useEffect(() => {
+    setButtonText(time.getHours() + ":" + time.getMinutes());
+  }, [time]);
+
   const saveReminderAndClose = () => {
     updateReminder(
       new Reminder(
         recurrence,
         weekday,
-        20,
-        15,
+        time.getHours(),
+        time.getMinutes(),
         recurringAmount
       )
     );

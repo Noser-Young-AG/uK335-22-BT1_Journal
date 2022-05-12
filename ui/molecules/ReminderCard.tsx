@@ -27,8 +27,9 @@ function ReminderCard(props: ReminderCardProps) {
         <Card.Content>
           <Paragraph>
             {getRecurrenceString(props.reminder.recurrence)} on{" "}
-            {props.reminder.weekday}, {props.reminder.hour}:
-            {props.reminder.minute}
+            {props.reminder.weekday},
+            {(props.reminder.hour < 10 ? " 0" : " ") + props.reminder.hour}:
+            {(props.reminder.minute < 10 ? "0" : "") + props.reminder.minute}
           </Paragraph>
           <Paragraph>
             Recurring{" "}
