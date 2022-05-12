@@ -1,5 +1,5 @@
-1	Installationsanleitung
-1.1	Repo
+# 1	Installationsanleitung
+## 1.1	Repo
 
 Als erstes, muss unser Projekt heruntergeladen werden oder man cloned unser Projekt. Unser Projekt befindet sich auf Github.
 Link: https://github.com/Noser-Young-AG/uK335-22-BT1_Journal
@@ -9,16 +9,16 @@ Wenn man das Repo herunterladen, befindet sich im Downloads-Ordner ein Zip-Ordne
 Man kann das Ganze Repo aber auch clonen. Auf dem Bild ist gezeigt, wo man den Link für das clonen finden kann.
 ![image](https://user-images.githubusercontent.com/69907003/168018491-8cede363-8d25-4095-aca9-8e53d3b0fbe4.png)
 
-1.2	Installationen
+## 1.2	Installationen
 Bevor es möglich ist unser Projekt zu starten, müssen ein paar Dinge installiert werden. Folgende Dinge müssen vor dem Projekt Start installiert werden:
-•	Yarn
-•	Expo
-•	Node.js
-•	NPM
-•	Android SDK
-•	Android Emulator
+*	Yarn
+*	Expo
+*	Node.js
+*	NPM
+*	Android SDK
+*	Android Emulator
 
-5.3	Run
+## 5.3	Run
 Wenn das Projekt starten möchte, muss man sich zuerst in den Ordner des Projektes begeben. Es ist auch erlaubt, dass Projekt in Visual Studio zu öffnen.
 ![image](https://user-images.githubusercontent.com/69907003/168018556-ffe42dda-e57f-4aa2-b855-61e5b0b55c90.png) 
 
@@ -42,7 +42,7 @@ Wenn aber alles gut ist, kommt eine Nachricht, dass die App gebuilded wird.
  
 Wenn der Build erfolgreich war, wird dies in der Konsole erwähnt.  Darunter tauch ein grosser QR-Code auf, welcher mit dem Smartphone gescannt werden kann.
  
-1.4	Versionen
+## 1.4	Versionen
 Hier sieht ist eine Liste von den Versionen der verschiedenen Komponenten, die wir installiert haben, um unser Projekt zu starten.
 Was	Version
 Yarn	v1.22.18
