@@ -7,6 +7,7 @@ Name: uK335-22-BT1_Journal
 
 Wenn man das Repo herunterladen, befindet sich im Downloads-Ordner ein Zip-Ordner, welche zuerst entpackt werden muss, bevor man damit arbeitet.
 Man kann das Ganze Repo aber auch clonen. Auf dem Bild ist gezeigt, wo man den Link für das clonen finden kann.
+
 ![image](https://user-images.githubusercontent.com/69907003/168018491-8cede363-8d25-4095-aca9-8e53d3b0fbe4.png)
 
 ## 1.2	Installationen
