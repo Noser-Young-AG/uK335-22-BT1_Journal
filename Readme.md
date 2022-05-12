@@ -1,7 +1,7 @@
 # 1	Installationsanleitung
 ## 1.1	Repo
 
-Als erstes, muss unser Projekt heruntergeladen werden oder man cloned unser Projekt. Unser Projekt befindet sich auf Github.
+Als erstes, muss unser das Repository von GitHub heruntergeladen oder gecloned werden.
 Link: https://github.com/Noser-Young-AG/uK335-22-BT1_Journal
 Name: uK335-22-BT1_Journal
 
