@@ -76,8 +76,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     margin: "2%",
     marginTop: "0%",
+    alignContent: 'center'
   },
   inputfield: {
-    width: "75%",
+    width: "75%", 
   },
 });
