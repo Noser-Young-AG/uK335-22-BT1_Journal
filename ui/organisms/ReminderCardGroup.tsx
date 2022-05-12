@@ -1,6 +1,5 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import Recurrence from "../../types/Recurrence";
 import { Reminder } from "../../types/Reminder";
 import FabElement from "../atoms/FabElement";
 import TitleElement from "../atoms/TitleElement";
@@ -22,16 +21,12 @@ function ReminderCardGroup(props: ReminderCardGroupProps) {
       justifyContent: "center",
     },
   });
-  
+
   if (props.reminder == null) {
     return (
       <View style={styles.container}>
         <TitleElement name="No reminders set" />
-        <FabElement
-          name="Create"
-          hidden={false}
-          onPress={props.onCreate}
-        />
+        <FabElement name="Create" hidden={false} onPress={props.onCreate} />
       </View>
     );
   } else {
