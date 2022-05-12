@@ -115,7 +115,7 @@ function ReminderSettings({ navigation }) {
   }
 
   return (
-    <View style={styles.container}> // TODO: Convert to ScrollView
+    <View style={styles.container}>
       <MultiselectWeekdaysGroup
         selected={reminder != undefined ? reminder.weekday : weekday}
         selectedChanged={(x) => setWeekday(x)}
@@ -129,8 +129,8 @@ function ReminderSettings({ navigation }) {
         recurringAmount={recurringAmount}
         recurringAmountChanged={(x) => setRecurringAmount(x)}
       /> */}
+      <TimeGroup label="Choose Time" onChange={onTimeChange} value={time} />
       <ButtonElement name="Save" color="#01A299" onPress={() => saveReminderAndClose()} />
-      <TimeGroup label="Choose Time" onChange={onTimeChange} value={time}/>
     </View>
   );
 }

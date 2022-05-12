@@ -23,7 +23,7 @@ export default function RepeatInputGroup(props: RepeatInputGroupProps) {
     if (typeof props.recurringAmount === "number") {
       setRecurringAmount(props.recurringAmount )
     }
-  }, [props.recurringAmount, recurringAmount]);
+  }, [props.recurringAmount]);
 
   // useEffect(() => {
   //   setChecked(props.recurringAmount === "forever");
@@ -53,7 +53,7 @@ export default function RepeatInputGroup(props: RepeatInputGroupProps) {
         <Inputfield
           onChange={(value) => setRecurringAmount(value)}
           // value={typeof recurringAmount === "number" ? recurringAmount.toString() : undefined}
-          value={recurringAmount!.toString()}
+          value={recurringAmount?.toString()}
           disabled={checked}
           label="Repetition"
           affix="/100"

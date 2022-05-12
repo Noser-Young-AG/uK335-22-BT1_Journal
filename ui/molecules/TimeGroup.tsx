@@ -28,8 +28,8 @@ export default function TimeGroup(props: timeGroupProps) {
 <>
       <GroupTitle title="Time" />
       <View style={styles.container}>
-      <Button mode="contained" onPress={onClick} style={styles.button} icon={"clock-outline"}>
-        {time.toLocaleTimeString().substring(0,5)}
+      <Button mode="outlined" color="black" onPress={onClick} style={styles.button} icon={"clock-outline"}>
+        {time?.toLocaleTimeString().substring(0,5)}
       </Button>
       {visible ? (
         <RNDateTimePicker
@@ -53,8 +53,7 @@ const styles = StyleSheet.create({
     },
     button: {
         margin: '2%',
-        width: '96%',
-
+        width: '30%',
     },
     text: {
         textAlign: 'center',
