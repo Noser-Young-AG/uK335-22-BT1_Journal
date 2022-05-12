@@ -14,7 +14,6 @@ export default function RepeatInputGroup(props: RepeatInputGroupProps) {
   const [recurringAmount, setRecurringAmount] = useState(props.recurringAmount);
 
   useEffect(() => {
-    console.log("recurringamount states use effect " + recurringAmount);
     if (recurringAmount !== undefined) {
       props.recurringAmountChanged(
         checked ? "forever" : Number(recurringAmount)
@@ -23,8 +22,6 @@ export default function RepeatInputGroup(props: RepeatInputGroupProps) {
   }, [checked, recurringAmount]);
 
   useEffect(() => {
-    console.log("recurringamount props use effect " + props.recurringAmount);
-
     setChecked(props.recurringAmount === "forever");
     if (typeof props.recurringAmount === "number") {
       setRecurringAmount(props.recurringAmount);
