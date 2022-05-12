@@ -62,7 +62,7 @@ function ReminderSettings({ navigation }) {
     updateReminder(
       new Reminder(
         recurrence,
-        weekday!,
+        weekday,
         20,
         15,
         recurringAmount
