@@ -20,7 +20,11 @@ export default function Inputfield(props: Inputfield) {
   const [value, setValue] = useState(props.value);
 
   useEffect(() => {
-    setValue(props.value);
+    console.log("Inputfield use effect props: " + props.value);
+    console.log("Inputfield use effect props: " + value);
+    // if (props.value !== undefined && !Number.isNaN(props.value)) {
+      setValue(props.value);
+    // } 
   }, [props.value]);
 
   return (
