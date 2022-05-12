@@ -11,6 +11,21 @@ import TimeGroup from "../molecules/TimeGroup";
 import MultiselectWeekdaysGroup from "../organisms/MultiselectWeekdaysGroup";
 import { sendNotification, initializeNotification, cancelAllNotifications } from "../../service/ReminderNotification";
 
+
+/**
+ *
+ * @param navigation used for navigating through pages with the help of an enum that consists of pages {@link NavigationPages}
+ *
+ * the {@link ReminderSettings } function is a page that consists of following components.
+ * <ul>
+ *     <li>The {@link MultiselectWeekdaysGroup} molecule</li>
+ *     <li>The {@link RecurrenceGroup} molecule</li>
+ *     <li>The {@link ButtonElement} atom</li>
+ *     <li>The {@link TimeGroup} molecule</li>
+ * </ul>
+ * all of these components build our ReminderSettings page
+ *
+ */
 function ReminderSettings({ navigation }) {
   const [reminder, setReminder] = useState<Reminder>();
   const [weekday, setWeekday] = useState<string>("Friday");

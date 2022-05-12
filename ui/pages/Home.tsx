@@ -7,6 +7,15 @@ import { loadReminder, deleteReminder } from "../../utils/Persistence";
 import { useFocusEffect } from "@react-navigation/native";
 import { cancelAllNotifications } from "../../service/ReminderNotification";
 
+/**
+ *
+ * @param navigation used for navigating through pages with the help of an enum that consists of pages {@link NavigationPages}
+ *
+ * the {@link Home } function is a page that consists of the {@link ReminderCardGroup} molecule. This Card contains all informations
+ * about the reminder after its creation
+ *
+ *
+ */
 function Home({ navigation }) {
   const [reminder, setReminder] = useState<Reminder>();
 
