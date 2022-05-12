@@ -17,7 +17,7 @@ export default function MultiselectWeekdays(props: MultiselectProps) {
           text={x}
           checked={x === props.selected}
           onChange={() => props.setSelected(x)}
-          ></MultiselectElement>
+        ></MultiselectElement>
       ))}
     </View>
   );

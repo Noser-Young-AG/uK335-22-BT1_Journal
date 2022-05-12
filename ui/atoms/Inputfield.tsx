@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { KeyboardTypeOptions } from "react-native";
-import { StyleProp, View, ViewStyle } from "react-native";
+import { KeyboardTypeOptions, StyleProp, View, ViewStyle } from "react-native";
 import { TextInput } from "react-native-paper";
-import GroupTitle from "./GroupTitle";
-import TitleElement from "./TitleElement";
 
-type Inputfield = {
+type InputfieldProps = {
   value?: string;
   label?: string;
-  affix?: string;
   placeholder?: string;
   style?: StyleProp<ViewStyle>;
   type?: KeyboardTypeOptions;
@@ -16,15 +12,13 @@ type Inputfield = {
   onChange: (value: string) => void;
 };
 
-export default function Inputfield(props: Inputfield) {
+export default function Inputfield(props: InputfieldProps) {
   const [value, setValue] = useState(props.value);
 
   useEffect(() => {
     console.log("Inputfield use effect props: " + props.value);
     console.log("Inputfield use effect props: " + value);
-    // if (props.value !== undefined && !Number.isNaN(props.value)) {
-      setValue(props.value);
-    // } 
+    setValue(props.value);
   }, [props.value]);
 
   return (
@@ -33,7 +27,6 @@ export default function Inputfield(props: Inputfield) {
         value={value}
         mode="outlined"
         label={props.label}
-        right={<TextInput.Affix text={props.affix} />}
         keyboardType={props.type}
         placeholder={props.placeholder}
         disabled={props.disabled}

@@ -3,12 +3,11 @@ import { View, StyleSheet } from "react-native";
 import { Checkbox, Text } from "react-native-paper";
 import GroupTitle from "../atoms/GroupTitle";
 import Inputfield from "../atoms/Inputfield";
-import MultiselectElement from "../atoms/MultiselectElement";
 
 type RepeatInputGroupProps = {
   recurringAmount?: number | string;
   recurringAmountChanged: (value: number | string | undefined) => void;
-}
+};
 
 export default function RepeatInputGroup(props: RepeatInputGroupProps) {
   const [checked, setChecked] = useState(props.recurringAmount === "forever");
@@ -17,23 +16,20 @@ export default function RepeatInputGroup(props: RepeatInputGroupProps) {
   useEffect(() => {
     console.log("recurringamount states use effect " + recurringAmount);
     if (recurringAmount !== undefined) {
-      props.recurringAmountChanged(checked ? "forever" : Number(recurringAmount));
+      props.recurringAmountChanged(
+        checked ? "forever" : Number(recurringAmount)
+      );
     }
   }, [checked, recurringAmount]);
 
   useEffect(() => {
     console.log("recurringamount props use effect " + props.recurringAmount);
-    
+
     setChecked(props.recurringAmount === "forever");
     if (typeof props.recurringAmount === "number") {
-      setRecurringAmount(props.recurringAmount)
+      setRecurringAmount(props.recurringAmount);
     }
   }, [props.recurringAmount]);
-
-  // useEffect(() => {
-  //   setChecked(props.recurringAmount === "forever");
-  // }, [recurringAmount]);
-
 
   return (
     <View>
@@ -57,12 +53,15 @@ export default function RepeatInputGroup(props: RepeatInputGroupProps) {
         </View>
         <Inputfield
           onChange={(value) => setRecurringAmount(value)}
-          // value={typeof recurringAmount === "number" ? recurringAmount.toString() : undefined}
-          // value={recurringAmount !== undefined ? (typeof recurringAmount === "number" ? recurringAmount.toString() : undefined) : undefined}
-          value={recurringAmount !== undefined && typeof recurringAmount !== "string" && !Number.isNaN(recurringAmount) ? recurringAmount.toString() : undefined}
+          value={
+            recurringAmount !== undefined &&
+            typeof recurringAmount !== "string" &&
+            !Number.isNaN(recurringAmount)
+              ? recurringAmount.toString()
+              : undefined
+          }
           disabled={checked}
           label="Repetition"
-          affix="/100"
           placeholder="Amount of repetitions"
           style={styles.inputfield}
           type={"number-pad"}
@@ -82,9 +81,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     margin: "2%",
     marginTop: "0%",
-    alignContent: 'center'
+    alignContent: "center",
   },
   inputfield: {
-    width: "75%", 
+    width: "75%",
   },
 });
