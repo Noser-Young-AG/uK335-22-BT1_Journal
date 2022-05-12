@@ -25,7 +25,6 @@ export default function TimeGroup(props: timeGroupProps) {
   };
 
   const onClick = () => {
-    console.log(true);
     setVisibility(true);
   };
 

@@ -14,7 +14,6 @@ export default function MultiselectElement(props: selectProps) {
 
   useEffect(() => {
     setChecked(props.checked);
-    console.log("Change in element: " + check);
   }, [props.checked, check]);
 
   const emptyIcon = () => null;

@@ -16,8 +16,6 @@ export default function Inputfield(props: InputfieldProps) {
   const [value, setValue] = useState(props.value);
 
   useEffect(() => {
-    console.log("Inputfield use effect props: " + props.value);
-    console.log("Inputfield use effect props: " + value);
     setValue(props.value);
   }, [props.value]);
 

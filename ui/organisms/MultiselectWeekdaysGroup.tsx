@@ -10,16 +10,19 @@ type MultiselectWeekdaysGroupProps = {
 
 const WEEKDAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
+/**
+ * Display weekday selection.
+ * @param props Selected weekday, function if another one is selected.
+ * @returns 
+ */
 function MultiselectWeekdaysGroup(props: MultiselectWeekdaysGroupProps) {
   const [selected, setSelected] = useState(props.selected);
 
   useEffect(() => {
-    console.log("Selected changed: " + selected);
     props.selectedChanged(selected);
   }, [selected]);
 
   useEffect(() => {
-    console.log("Props changed now");
     setSelected(props.selected);
   }, [props.selected]);
 

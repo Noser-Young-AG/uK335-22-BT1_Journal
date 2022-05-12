@@ -8,6 +8,9 @@ const NOTIFICATION_BODY = "Write your journal.";
 const NOTIFICATION_CHANNEL_NAME = "Default Channel";
 const NOTIFICATION_CHANNEL_ID = "default";
 
+/**
+ * Cancel all planned notifications.
+ */
 export async function cancelAllNotifications() {
     await notifee.cancelAllNotifications()
         .catch(e => console.log(e));

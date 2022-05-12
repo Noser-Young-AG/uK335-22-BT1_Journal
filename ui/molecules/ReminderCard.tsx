@@ -16,8 +16,8 @@ function LeftContent() {
 }
 
 /**
- *
- * @param recurringAmount - checked for its type and returns either "never", "forever" or the amount of times
+ * Checked for its type and returns either "never", "forever" or the amount of times
+ * @param recurringAmount Variable to check. 
  */
 function getTypeOfRecurringAmount(recurringAmount: string | number | undefined) {
   if (typeof recurringAmount === "undefined") {
@@ -34,7 +34,7 @@ function ReminderCard(props: ReminderCardProps) {
     <View style={styles.container}>
       <Card>
         <Card.Title
-          title="Your Reminder"
+          title="Journal"
           subtitle={getRecurrenceString(props.reminder.recurrence)}
           left={LeftContent}
         />
