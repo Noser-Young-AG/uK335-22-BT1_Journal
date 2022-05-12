@@ -7,7 +7,7 @@ import Recurrence, { getRecurrenceString } from "../../types/Recurrence";
 type RecurrenceGroupProps = {
   selected: number;
   selectedChanged: (value: number) => void;
-}
+};
 
 export default function RecurrenceGroup(props: RecurrenceGroupProps) {
   const [checked, setChecked] = React.useState(props.selected);
@@ -30,7 +30,9 @@ export default function RecurrenceGroup(props: RecurrenceGroupProps) {
           onPress={() => setChecked(Recurrence.WEEKLY)}
           color="#6200EE"
         />
-        <Text onPress={() => setChecked(Recurrence.WEEKLY)}>{getRecurrenceString(Recurrence.WEEKLY)}</Text>
+        <Text onPress={() => setChecked(Recurrence.WEEKLY)}>
+          {getRecurrenceString(Recurrence.WEEKLY)}
+        </Text>
       </View>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <RadioButton.Android
@@ -39,7 +41,9 @@ export default function RecurrenceGroup(props: RecurrenceGroupProps) {
           onPress={() => setChecked(Recurrence.MONTHLY)}
           color="#6200EE"
         />
-        <Text onPress={() => setChecked(Recurrence.MONTHLY)}>{getRecurrenceString(Recurrence.MONTHLY)}</Text>
+        <Text onPress={() => setChecked(Recurrence.MONTHLY)}>
+          {getRecurrenceString(Recurrence.MONTHLY)}
+        </Text>
       </View>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <RadioButton.Android
@@ -48,7 +52,9 @@ export default function RecurrenceGroup(props: RecurrenceGroupProps) {
           onPress={() => setChecked(Recurrence.NONE)}
           color="#6200EE"
         />
-        <Text onPress={() => setChecked(Recurrence.NONE)}>{getRecurrenceString(Recurrence.NONE)}</Text>
+        <Text onPress={() => setChecked(Recurrence.NONE)}>
+          {getRecurrenceString(Recurrence.NONE)}
+        </Text>
       </View>
     </View>
   );

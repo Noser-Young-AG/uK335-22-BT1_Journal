@@ -15,6 +15,20 @@ function LeftContent() {
   return <BellIcon />;
 }
 
+/**
+ *
+ * @param recurringAmount - checked for its type and returns either "never", "forever" or the amount of times
+ */
+function getTypeOfRecurringAmount(recurringAmount: string | number | undefined) {
+  if (typeof recurringAmount === "undefined") {
+    return "never"
+  } else if (typeof recurringAmount === "string") {
+    return recurringAmount
+  } else {
+    return recurringAmount + " times"
+  }
+}
+
 function ReminderCard(props: ReminderCardProps) {
   return (
     <View style={styles.container}>
@@ -33,11 +47,8 @@ function ReminderCard(props: ReminderCardProps) {
           </Paragraph>
           <Paragraph>
             Recurring{" "}
-            {typeof props.reminder.recurringAmount === "undefined"
-              ? "never"
-              : typeof props.reminder.recurringAmount === "string"
-              ? props.reminder.recurringAmount
-              : props.reminder.recurringAmount + " times"}
+            {}
+            {getTypeOfRecurringAmount(props.reminder.recurringAmount)}
           </Paragraph>
         </Card.Content>
         <Card.Actions>

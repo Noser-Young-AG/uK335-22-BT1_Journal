@@ -31,5 +31,3 @@ export const deleteReminder = async () => {
     console.error("Failed to remove reminder.", e);
   }
 };
-
-// export default loadReminder;
